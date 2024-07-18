@@ -1,0 +1,19 @@
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        unordered_map<int, int> numToIndex;
+        vector<int> ans;
+
+        for (int i = 0; i < nums.size(); i++) {
+            int rem = target - nums[i];
+            if (numToIndex.find(rem) != numToIndex.end()) {
+                ans.push_back(numToIndex[rem]);
+                ans.push_back(i);
+                break; 
+            }
+            numToIndex[nums[i]] = i; 
+        }
+
+        return ans;
+    }
+};
