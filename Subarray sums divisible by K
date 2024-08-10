@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int subarraysDivByK(vector<int>& nums, int k) {
+        int n = nums.size(), s = 0, c = 0;
+
+        unordered_map<int, int> mp;
+        mp[0] = 1;
+
+        for (int i : nums) {
+            s += i;
+            int mod = s % k;
+            if (mod < 0)
+                mod += k;
+            if (mp.find(mod) != mp.end()) {
+                c += mp[mod];
+            }
+            mp[mod]++;
+        }
+
+        return c;
+    }
+
+};
